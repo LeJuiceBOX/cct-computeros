@@ -1,7 +1,4 @@
 term.clear()
-shell.run("pastebin get TFwdaR7G os/cmds/gitget.lua")
-shell.setAlias("os/cmds/gitget.lua","gitget")
-term.clear()
 shell.run("gitget temp_manifest.lua LeJuiceBOX/cct-computeros/refs/heads/main/gitget.lua")
 shell.run("temp_manifest.lua")
 
