@@ -36,7 +36,7 @@ for i, v in pairs(files) do
     elseif v.Paste ~= nil then
         shell.run("pastebin get "..tostring(v.Paste).." "..tostring(v.Name))
     end
-    os.sleep(0.05)
+    os.sleep(0.15)
 end
 os.sleep(.25)
 term.clear()
