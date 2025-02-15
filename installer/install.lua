@@ -29,14 +29,16 @@ if #files == 0 then print("No files in 'os.manifest', failed to install.") os.sl
 for i, v in pairs(files) do
     term.clear()
     term.setCursorPos(1,1)
-    print("Downloading "..tostring(#files).." files...\n\n")
+    print("Downloading file "..tostring(i).." of "..tostring(#files).."...\n\n")
     if fs.exists(v.Name) then fs.delete(v.Name); end
     if v.Git ~= nil then
         shell.run("getgit "..tostring(v.Name).." "..tostring(v.Git))
     elseif v.Paste ~= nil then
         shell.run("pastebin get "..tostring(v.Paste).." "..tostring(v.Name))
     end
+    os.sleep(0.05)
 end
+os.sleep(.25)
 term.clear()
 term.setCursorPos(1,1)
 print("Finished installing ComputerOS... Enjoy!")
