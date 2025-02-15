@@ -18,8 +18,8 @@ if #args < 3 then
 end
 
 local mode = args[1]
-local fileName = args[2]
-local gitLink = args[3]
+local gitLink = args[2]
+local fileName = args[3]
 
 local gitHttp = http.get(GUC..gitLink)
 local code = ""
