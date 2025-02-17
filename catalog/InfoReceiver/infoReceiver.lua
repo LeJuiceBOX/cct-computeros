@@ -73,4 +73,5 @@ end
 draw()
 while true do
     parallel.waitForAny(draw, gatherInfo)
+    os.sleep(0.5)
 end
