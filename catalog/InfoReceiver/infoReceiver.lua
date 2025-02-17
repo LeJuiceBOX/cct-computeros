@@ -28,6 +28,7 @@ function split(inputstr, sep)
 end
 
 function gatherInfo()
+    print("Gathering...")
     while true do
         local infos = {}
         rednet.broadcast(PROTOCOL,"get")
@@ -69,9 +70,11 @@ function draw()
 end
 
 
-
 draw()
 while true do
-    parallel.waitForAny(draw, gatherInfo)
+    _G.coroutine.wrap(function()
+        gatherInfo()
+    end)()
+    draw()
     os.sleep(0.5)
 end
