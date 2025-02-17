@@ -1,6 +1,10 @@
 {
     "Lua.diagnostics.globals": [
         "term",
-        "shell"
+        "shell",
+        "settings",
+        "fs",
+        "peripheral",
+        "rednet"
     ]
 }
