@@ -70,11 +70,7 @@ function draw()
 end
 
 
+_G.coroutine.wrap(function()
+    gatherInfo()
+end)()
 draw()
-while true do
-    _G.coroutine.wrap(function()
-        gatherInfo()
-    end)()
-    draw()
-    os.sleep(0.5)
-end
