@@ -72,5 +72,11 @@ end
 
 _G.coroutine.wrap(function()
     gatherInfo()
+    draw()
 end)()
-draw()
+
+repeat
+    draw()
+    gatherInfo()
+    os.sleep(1)
+until false
