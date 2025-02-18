@@ -10,13 +10,13 @@ settings.set("os.manifest",{
 
     {
         Name = "/terminal.lua",
-        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/lib/terminal.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/terminal.lua",
         Paste = nil
     },
 
     {
         Name = "/packet.lua",
-        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/lib/packet.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/packet.lua",
         Paste = nil
     },
 
