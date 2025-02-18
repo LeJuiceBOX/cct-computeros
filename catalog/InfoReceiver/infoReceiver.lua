@@ -1,7 +1,6 @@
 
 local SETTINGS_INFOS = "app.InfoReceiver.info"
 local PROTOCOL = "Info"
-local RELAY_HOSTNAME = "InfoCollector"
 
 term.clear()
 term.setCursorPos(1,1)
@@ -42,13 +41,14 @@ function gatherInfo()
         if #args > 0 then                
             if args[1] == "packet" then
                 if #args < 3 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
-                local label = args[2]
+                local pre = args[4] or ""
+                local suf = args[5] or ""
                 local id = args[2]:gsub("%s+", "_")
                 infos[id] = {
                     Label = args[2],
                     Value = args[3],
-                    Prefix = args[4] or "",
-                    Suffix = args[5] or ""
+                    Prefix = pre,
+                    Suffix = suf
                 }
                 settings.set(SETTINGS_INFOS,infos)
                 settings.save()
@@ -64,7 +64,7 @@ function draw()
     print("Infos:\n")
     local infos = settings.get("app.InfoReceiver.info",{})
     for _,v in pairs(infos) do
-        print(" "..v.Label..": "..v.Value)
+        print(" "..v.Label..": "..v.Prefix..v.Value..v.Suffix)
     end
 end
 
