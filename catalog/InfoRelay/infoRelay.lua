@@ -81,7 +81,7 @@ function main()
     loadSettings()
     terminal:reset()
     if firstTime then setup() end
-    if fs.exsists(COLLECT_INSTRUCTION_SCRIPT) == false then
+    if fs.exists(COLLECT_INSTRUCTION_SCRIPT) == false then
         shell.run("wget "..COLLECT_INSTRUCTION_TEMPLATE..""..COLLECT_INSTRUCTION_SCRIPT)
     end
     collect_func = require(COLLECT_INSTRUCTION_SCRIPT)
