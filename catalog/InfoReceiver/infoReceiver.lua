@@ -40,11 +40,11 @@ function gatherInfo()
         local args = split(message,",")
         if #args > 0 then                
             if args[1] == "packet" then
-                if #args < 5 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
+                if #args < 3 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
                 local label = args[2]
-                local id = label:gsub("%s+", "_")
+                local id = args[2]:gsub("%s+", "_")
                 infos[id] = {
-                    Label = label,
+                    Label = args[2],
                     Value = args[3],
                     Prefix = args[4],
                     Suffix = args[5]
