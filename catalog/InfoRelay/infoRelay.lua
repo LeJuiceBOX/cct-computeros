@@ -11,7 +11,6 @@ local label
 local prefix
 local suffix
 
-loadSettings()
 
 function loadSettings()
     firstTime = settings.get(SETTINGS..".firstTime",true)
@@ -87,6 +86,9 @@ end
 
 
 function main()
+    settings.load()
+    loadSettings()
+    terminal:reset()
     if firstTime then setup() end
     while true do
         parallel.waitForAny(collect, function()
