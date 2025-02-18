@@ -24,6 +24,7 @@ for i, v in pairs(files) do
     term.clear()
     term.setCursorPos(1,1)
     print("Downloading file "..tostring(i).." of "..tostring(#files).."...\n\n")
+    print("Name: "..v.Name)
     if fs.exists(v.Name) then fs.delete(v.Name); end
     if v.Git ~= nil then
         shell.run("wget https://raw.githubusercontent.com/"..v.Git.." "..v.Name)
