@@ -23,8 +23,9 @@ if #files == 0 then print("No files in 'os.manifest', failed to install.") os.sl
 for i, v in pairs(files) do
     term.clear()
     term.setCursorPos(1,1)
-    print("Downloading file "..tostring(i).." of "..tostring(#files).."...\n\n")
+    print("Downloading file "..tostring(i).." of "..tostring(#files).."...")
     print("Name: "..v.Name)
+    print("\n\n")
     if fs.exists(v.Name) then fs.delete(v.Name); end
     if v.Git ~= nil then
         shell.run("wget https://raw.githubusercontent.com/"..v.Git.." "..v.Name)
