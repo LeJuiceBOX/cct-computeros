@@ -1,4 +1,4 @@
-local COLLECT_INSTRUCTION_TEMPLATE = "https://github.com/LeJuiceBOX/cct-computeros/blob/main/catalog/InfoRelay/_templateCollectionInstructions.txt"
+local COLLECT_INSTRUCTION_TEMPLATE = "https://raw.githubusercontent.com/LeJuiceBOX/cct-computeros/refs/heads/main/catalog/InfoRelay/_templateCollectionInstructions.txt"
 local COLLECT_INSTRUCTION_SCRIPT = "os/programFiles/InfoRelay/collect_instructions.lua"
 local SETTINGS = "app.InfoRelay"
 
