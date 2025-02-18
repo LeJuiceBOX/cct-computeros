@@ -73,7 +73,7 @@ function options()
 end
 
 function collect()
-    local value
+    local value = ""
     while true do
         terminal:reset()
         terminal:print("InfoRelay is active!")
