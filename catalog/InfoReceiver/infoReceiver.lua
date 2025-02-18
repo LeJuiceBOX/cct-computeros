@@ -33,8 +33,11 @@ function gatherInfo()
     print("Gathering...")
     settings.load()
     local infos = {}
+    print("Broadcasting...")
     rednet.broadcast(PROTOCOL,"get")
+    print("Pull")
     local event, id, message, protocol = os.pullEvent("rednet_message")
+    print("Got event.")
     if protocol == PROTOCOL then
         if id and message then
             print(id,message)
