@@ -2,6 +2,8 @@
 local SETTINGS_INFOS = "app.InfoReceiver.info"
 local PROTOCOL = "Info"
 
+local packet = require("/lib/packet")
+
 term.clear()
 term.setCursorPos(1,1)
 print("Loading...")
@@ -18,16 +20,6 @@ end
 settings.load()
 peripheral.find("modem", rednet.open)
 
-function split(inputstr, sep)
-    sep = sep or "%s"
-    local t = {}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-        local arg = str:match( "^%s*(.-)%s*$" )
-        --print("Found arg: "..arg)
-        table.insert(t,arg) -- match: clears start and end whitespace
-    end
-    return t
-end
 
 function gatherInfo()
     --print("Gathering...")
@@ -37,10 +29,10 @@ function gatherInfo()
     local event, id, message, protocol = os.pullEvent("rednet_message")
     if id and message then
         --print(id,message)
-        local args = split(message,",")
+        local args = packet.parse(packet)
         if #args > 0 then                
             if args[1] == "packet" then
-                if #args < 3 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
+                if #args < 5 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
                 local pre = args[4] or ""
                 local suf = args[5] or ""
                 local id = args[2]:gsub("%s+", "_")
