@@ -1,5 +1,6 @@
 local COLLECT_INSTRUCTION_TEMPLATE = "https://raw.githubusercontent.com/LeJuiceBOX/cct-computeros/refs/heads/main/catalog/InfoRelay/_templateCollectionInstructions.txt"
 local COLLECT_INSTRUCTION_SCRIPT = "os/programFiles/InfoRelay/collect_instructions.lua"
+local COLLECT_INSTRUCTION_REQ = "/os.programFiles.InfoRelay.collect_instructions"
 local SETTINGS = "app.InfoRelay"
 
 local packet = require("/packet")
@@ -63,7 +64,7 @@ function setup()
 end
 
 function collect()
-    local value = ""
+    local value = collect_func()
     while true do
         terminal:reset()
         terminal:print("InfoRelay is active!")
@@ -84,7 +85,7 @@ function main()
     if fs.exists(COLLECT_INSTRUCTION_SCRIPT) == false then
         shell.run("wget "..COLLECT_INSTRUCTION_TEMPLATE..""..COLLECT_INSTRUCTION_SCRIPT)
     end
-    collect_func = require(COLLECT_INSTRUCTION_SCRIPT)
+    collect_func = require(COLLECT_INSTRUCTION_REQ)
     while true do
         parallel.waitForAny(collect, function()
             terminal:pressAnyKeyToContinue()
@@ -100,7 +101,7 @@ function main()
         local resStr, resInd = terminal:promptOptions("What would you like to do?",false,opts,4)
         if resInd == 1 then 
             shell.run("edit "..COLLECT_INSTRUCTION_SCRIPT)
-            collect_func = require(COLLECT_INSTRUCTION_SCRIPT)
+            collect_func = require(COLLECT_INSTRUCTION_REQ)
         elseif resInd == 2 then
             setup()
             loadSettings()
