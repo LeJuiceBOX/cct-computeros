@@ -23,14 +23,14 @@ function setup()
     repeat
         terminal:reset()
         terminal:print("Input your prefered data collection interval (sec)")
-        terminal:print("Recomendation: >1")
+        terminal:print("&8Recomendation: >1")
         terminal:print()
         collectInterval = terminal:promptNum("Enter an integer:")
         --
         terminal:reset()
         terminal:print("Input a label for this data.")
         terminal:print("It will look like this in the InfoReceiver:")
-        terminal:print("<label>: <prefix><value><suffix>")
+        terminal:print("&8<label>: <prefix><value><suffix>")
         terminal:print()
         label = terminal:prompt("Enter text:")
         --
@@ -60,18 +60,6 @@ function setup()
     terminal:reset()
 end
 
-function options()
-    terminal:reset()
-    terminal:print("InfoRelay paused.")
-
-    local opts = {
-        "Edit collection script",
-        "Unpause",
-        "Exit"
-    }
-    terminal:promptOptions("What would you like to do?",false,opts,5)
-end
-
 function collect()
     local value = ""
     while true do
@@ -80,6 +68,7 @@ function collect()
         terminal:print("Label: "..label)
         terminal:print("Value: "..value)
         terminal:print()
+        terminal:print("Press any key for the menu.")
         os.sleep(collectInterval)
     end
 end
@@ -98,16 +87,21 @@ function main()
         terminal:print("Relay paused.")
         local opts = {
             "Edit collection script",
+            "Redo setup",
             "Unpause",
             "Exit"
         }
         local resStr, resInd = terminal:promptOptions("What would you like to do?",false,opts,4)
         if resInd == 1 then 
             shell.run("edit os/programFiles/InfoRelay/collect_instructions.lua")
+        elseif resInd == 2 then
+            setup()
+            loadSettings()
         elseif resInd == 3 then
             break
         end
     end
+    terminal:reset()
 end
 
 main()
