@@ -38,24 +38,22 @@ function gatherInfo()
     print("Pull")
     local event, id, message, protocol = os.pullEvent("rednet_message")
     print("Got event.")
-    if protocol == PROTOCOL then
-        if id and message then
-            print(id,message)
-            local args = split(message,",")
-            if #args > 0 then                
-                if args[1] == "packet" then
-                    if #args < 5 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
-                    local label = args[2]
-                    local id = label:gsub("%s+", "_")
-                    infos[id] = {
-                        Label = label,
-                        Value = args[3],
-                        Prefix = args[4],
-                        Suffix = args[5]
-                    }
-                    settings.set("app.InfoReceiver.info",infos)
-                    settings.save()
-                end
+    if id and message then
+        print(id,message)
+        local args = split(message,",")
+        if #args > 0 then                
+            if args[1] == "packet" then
+                if #args < 5 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
+                local label = args[2]
+                local id = label:gsub("%s+", "_")
+                infos[id] = {
+                    Label = label,
+                    Value = args[3],
+                    Prefix = args[4],
+                    Suffix = args[5]
+                }
+                settings.set("app.InfoReceiver.info",infos)
+                settings.save()
             end
         end
     end
