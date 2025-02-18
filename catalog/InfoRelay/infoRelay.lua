@@ -95,7 +95,7 @@ function main()
             terminal:pressAnyKeyToContinue()
         end)
         terminal:reset()
-        termianl:print("Relay paused.")
+        terminal:print("Relay paused.")
         local opts = {
             "Edit collection script",
             "Unpause",
