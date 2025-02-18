@@ -56,6 +56,7 @@ function gatherInfo()
 end
 
 function draw()
+    print("INFO")
     settings.load()
     term.clear()
     term.setCursorPos(1,1)
@@ -69,6 +70,6 @@ end
 
 repeat
     draw()
-    gatherInfo()
+    --gatherInfo()
     os.sleep(1)
 until false
