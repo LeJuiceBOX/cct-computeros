@@ -2,7 +2,7 @@
 local SETTINGS_INFOS = "app.InfoReceiver.info"
 local PROTOCOL = "Info"
 
-local packet = require("lib.packet")
+local packet = require("/libs.packet")
 
 term.clear()
 term.setCursorPos(1,1)
