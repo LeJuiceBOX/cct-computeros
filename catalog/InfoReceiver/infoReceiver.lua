@@ -64,7 +64,7 @@ function draw()
     print("Infos:\n")
     local infos = settings.get("app.InfoReceiver.info",{})
     for _,v in pairs(infos) do
-        print(" "..v.Label..": "..v.Label)
+        print(" "..v.Label..": "..v.Value)
     end
 end
 
