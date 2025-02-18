@@ -70,11 +70,6 @@ function draw()
 end
 
 
-_G.coroutine.wrap(function()
-    gatherInfo()
-    draw()
-end)()
-
 repeat
     draw()
     gatherInfo()
