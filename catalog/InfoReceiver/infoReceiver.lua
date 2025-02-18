@@ -1,6 +1,7 @@
 
+local SETTINGS_INFOS = "app.InfoReceiver.info"
 local PROTOCOL = "Info"
-local infoRelayHost = "InfoCollector"
+local RELAY_HOSTNAME = "InfoCollector"
 
 term.clear()
 term.setCursorPos(1,1)
@@ -23,20 +24,20 @@ function split(inputstr, sep)
     local t = {}
     for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
         local arg = str:match( "^%s*(.-)%s*$" )
-        print("Found arg: "..arg)
+        --print("Found arg: "..arg)
         table.insert(t,arg) -- match: clears start and end whitespace
     end
     return t
 end
 
 function gatherInfo()
-    print("Gathering...")
+    --print("Gathering...")
     settings.load()
-    local infos = {}
+    local infos = settings.get(SETTINGS_INFOS,{})
     rednet.broadcast(PROTOCOL,"get")
     local event, id, message, protocol = os.pullEvent("rednet_message")
     if id and message then
-        print(id,message)
+        --print(id,message)
         local args = split(message,",")
         if #args > 0 then                
             if args[1] == "packet" then
@@ -49,7 +50,7 @@ function gatherInfo()
                     Prefix = args[4],
                     Suffix = args[5]
                 }
-                settings.set("app.InfoReceiver.info",infos)
+                settings.set(SETTINGS_INFOS,infos)
                 settings.save()
             end
         end
@@ -69,7 +70,7 @@ end
 
 
 while true do
-    --draw()
+    draw()
     gatherInfo()
     os.sleep(1)
 end
