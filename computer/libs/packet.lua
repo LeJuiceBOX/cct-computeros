@@ -11,20 +11,9 @@ module.compile = function(...)
 end
 
 module.parse = function(packet)
-    sep = sep or "%s"
+    sep = ","
     local t = {}
     for str in string.gmatch(packet, "([^"..sep.."]+)") do
-        local arg = str:match( "^%s*(.-)%s*$" )
-        --print("Found arg: "..arg)
-        table.insert(t,arg) -- match: clears start and end whitespace
-    end
-    return t
-end
-
-function split(inputstr, sep)
-    sep = sep or "%s"
-    local t = {}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
         local arg = str:match( "^%s*(.-)%s*$" )
         --print("Found arg: "..arg)
         table.insert(t,arg) -- match: clears start and end whitespace
