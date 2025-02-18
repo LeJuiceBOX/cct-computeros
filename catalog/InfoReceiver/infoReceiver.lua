@@ -47,8 +47,8 @@ function gatherInfo()
                 infos[id] = {
                     Label = args[2],
                     Value = args[3],
-                    Prefix = args[4],
-                    Suffix = args[5]
+                    Prefix = args[4] or "",
+                    Suffix = args[5] or ""
                 }
                 settings.set(SETTINGS_INFOS,infos)
                 settings.save()
