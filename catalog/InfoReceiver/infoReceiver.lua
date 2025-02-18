@@ -50,12 +50,12 @@ function gatherInfo()
                         Prefix = args[4],
                         Suffix = args[5]
                     }
+                    settings.set("app.InfoReceiver.info",infos)
+                    settings.save()
                 end
             end
         end
     end
-    settings.set("app.InfoReceiver.info",infos)
-    settings.save()
 end
 
 function draw()
