@@ -4,7 +4,7 @@ settings.set("os.manifest",{
 
     {
         Name = "os/cmds/gitget.lua",
-        Git = "LeJuiceBOX/cct-computeros/blob/main/computer/os/cmds/gitget.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/os/cmds/gitget.lua",
         Paste = nil
     },
 
