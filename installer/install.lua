@@ -26,7 +26,7 @@ for i, v in pairs(files) do
     print("Downloading file "..tostring(i).." of "..tostring(#files).."...\n\n")
     if fs.exists(v.Name) then fs.delete(v.Name); end
     if v.Git ~= nil then
-        shell.run("getgit "..tostring(v.Name).." "..tostring(v.Git))
+        shell.run("wget https://raw.githubusercontent.com/"..v.Git.." "..v.Name)
     elseif v.Paste ~= nil then
         shell.run("pastebin get "..tostring(v.Paste).." "..tostring(v.Name))
     end
