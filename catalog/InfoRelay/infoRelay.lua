@@ -6,6 +6,7 @@ local SETTINGS = "app.InfoRelay"
 local packet = require("/packet")
 local terminal = require("/terminal"):new()
 
+fs.makeDir("os/programFiles/InfoRelay")
 settings.load()
 
 local firstTime
