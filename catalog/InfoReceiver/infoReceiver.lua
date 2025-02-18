@@ -70,6 +70,6 @@ end
 
 repeat
     draw()
-    --gatherInfo()
+    gatherInfo()
     os.sleep(1)
 until false
