@@ -1,6 +1,6 @@
 local COLLECT_INSTRUCTION_TEMPLATE = "https://raw.githubusercontent.com/LeJuiceBOX/cct-computeros/refs/heads/main/catalog/InfoRelay/_templateCollectionInstructions.txt"
 local COLLECT_INSTRUCTION_SCRIPT = "os/programFiles/InfoRelay/collect_instructions.lua"
-local COLLECT_INSTRUCTION_REQ = "/os.programFiles.InfoRelay.collect_instructions"
+local COLLECT_INSTRUCTION_REQ = "os.programFiles.InfoRelay.collect_instructions"
 local SETTINGS = "app.InfoRelay"
 
 local packet = require("/packet")
