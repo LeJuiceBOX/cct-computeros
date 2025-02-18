@@ -22,7 +22,9 @@ function split(inputstr, sep)
     sep = sep or "%s"
     local t = {}
     for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-      table.insert(t, str:match( "^%s*(.-)%s*$" )) -- match: clears start and end whitespace
+        local arg = str:match( "^%s*(.-)%s*$" )
+        print("Found arg: "..arg)
+        table.insert(t,arg) -- match: clears start and end whitespace
     end
     return t
 end
@@ -73,4 +75,4 @@ repeat
     --draw()
     gatherInfo()
     os.sleep(1)
-until false
+until 0==1
