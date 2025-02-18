@@ -2,7 +2,7 @@
 local SETTINGS_INFOS = "app.InfoReceiver.info"
 local PROTOCOL = "Info"
 
-local packet = require("/packet")
+local packet = require("/libs.packet")
 
 term.clear()
 term.setCursorPos(1,1)
@@ -29,7 +29,7 @@ function gatherInfo()
     local event, id, message, protocol = os.pullEvent("rednet_message")
     if id and message then
         --print(id,message)
-        local args = packet.parse(packet)
+        local args = packet.parse(message)
         if #args > 0 then                
             if args[1] == "packet" then
                 if #args < 5 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
