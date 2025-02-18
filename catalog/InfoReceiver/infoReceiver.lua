@@ -71,8 +71,7 @@ function draw()
 end
 
 
-repeat
+while os.sleep(1) do
     --draw()
     gatherInfo()
-    os.sleep(1)
-until 0==1
+end
