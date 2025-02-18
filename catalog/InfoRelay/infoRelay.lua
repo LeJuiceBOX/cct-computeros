@@ -65,7 +65,8 @@ function setup()
 end
 
 function collect()
-    local value = collect_func()
+    shell.run(COLLECT_INSTRUCTION_SCRIPT)
+    local value = settings.get("app.InfoRelay.value","&eerror")
     while true do
         terminal:reset()
         terminal:print("InfoRelay is active!")
@@ -87,7 +88,7 @@ function main()
         shell.run("wget "..COLLECT_INSTRUCTION_TEMPLATE.." "..COLLECT_INSTRUCTION_SCRIPT)
         print("created file")
     end
-    collect_func = require(COLLECT_INSTRUCTION_REQ)
+    --collect_func = require(COLLECT_INSTRUCTION_REQ)
     while true do
         parallel.waitForAny(collect, function()
             terminal:pressAnyKeyToContinue()

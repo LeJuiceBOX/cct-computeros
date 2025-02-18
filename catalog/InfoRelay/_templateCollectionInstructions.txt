@@ -1,8 +1,9 @@
--- Get the data you want and return it so it can be
--- relayed.
+-- Settings.set the value you want to collect
 -- loc: os/programFiles/InfoRelay/collect_instructions.lua
 -- local nbt = peripherals.find("blockReader")
 
-return function()
-    return -- return your value here
-end
+settings.load()
+
+local value = 0
+
+settings.set("app.InfoRelay.value",value)
