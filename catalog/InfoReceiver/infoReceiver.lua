@@ -35,6 +35,7 @@ function gatherInfo()
     local event, id, message, protocol = os.pullEvent("rednet_message")
     if protocol == PROTOCOL then
         if id and message then
+            print(id,message)
             local args = split(message,",")
             if #args > 0 then                
                 if args[1] == "packet" then
@@ -69,7 +70,7 @@ end
 
 
 repeat
-    draw()
+    --draw()
     gatherInfo()
     os.sleep(1)
 until false
