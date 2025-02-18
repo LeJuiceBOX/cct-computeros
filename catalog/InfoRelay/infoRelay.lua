@@ -1,8 +1,8 @@
 
 local SETTINGS = "app.InfoRelay"
 
-local packet = require("/lib/packet")
-local terminal = require("/lib/terminal"):new()
+local packet = require("lib.packet")
+local terminal = require("lib.terminal"):new()
 
 settings.load()
 
