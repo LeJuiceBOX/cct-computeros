@@ -62,7 +62,15 @@ function setup()
 end
 
 function options()
-    
+    terminal:reset()
+    terminal:print("InfoRelay paused.")
+
+    local opts = {
+        "Edit collection script",
+        "Unpause",
+        "Exit"
+    }
+    terminal:promptOptions("What would you like to do?",false,opts,5)
 end
 
 function collect()
@@ -73,7 +81,6 @@ function collect()
         terminal:print("Label: "..label)
         terminal:print("Value: "..value)
         terminal:print()
-        terminal:print("Press SPACE to see options.")
         os.sleep(collectInterval)
     end
 end
@@ -82,7 +89,23 @@ end
 function main()
     if firstTime then setup() end
     while true do
-        collect()
-        options()
+        parallel.waitForAny(collect, function()
+            terminal:pressAnyKeyToContinue()
+        end)
+        terminal:reset()
+        termianl:print("Relay paused.")
+        local opts = {
+            "Edit collection script",
+            "Unpause",
+            "Exit"
+        }
+        local resStr, resInd = terminal:promptOptions("What would you like to do?",false,opts,4)
+        if resInd == 1 then 
+            shell.run("edit os/programFiles/InfoRelay/collect_instructions.lua")
+        elseif resInd == 3 then
+            break
+        end
     end
 end
+
+main()
