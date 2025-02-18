@@ -1,6 +1,8 @@
--- get the data you want and return it so it can be
--- relayed. 
--- loc: os/programFiles/InfoRelay/collection_instructions.lua
+-- Get the data you want and return it so it can be
+-- relayed.
+-- loc: os/programFiles/InfoRelay/collect_instructions.lua
 -- local nbt = peripherals.find("blockReader")
 
-return
+return function()
+    return -- return your value here
+end
