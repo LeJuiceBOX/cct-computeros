@@ -84,6 +84,7 @@ function main()
     if firstTime then setup() end
     if fs.exists(COLLECT_INSTRUCTION_SCRIPT) == false then
         shell.run("wget "..COLLECT_INSTRUCTION_TEMPLATE..""..COLLECT_INSTRUCTION_SCRIPT)
+        print("created file")
     end
     collect_func = require(COLLECT_INSTRUCTION_REQ)
     while true do
