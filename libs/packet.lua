@@ -17,7 +17,7 @@ module.parse = function(packet)
     sep = ","
     local t = {}
     for str in string.gmatch(packet, "([^"..sep.."]+)") do
-        local arg = str:match( "^%s*(.-)%s*$" )
+        local arg = str
         --print("Found arg: "..arg)
         if arg == "nil" then
             arg = nil
