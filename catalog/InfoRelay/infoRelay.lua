@@ -78,8 +78,8 @@ function setup()
 end
 
 function collect()
-    shell.run(COLLECT_INSTRUCTION_SCRIPT)
     while true do
+        shell.run(COLLECT_INSTRUCTION_SCRIPT)
         local value = settings.get("app.InfoRelay.value","&eerror")
         terminal:reset()
         terminal:print("InfoRelay is active!")
