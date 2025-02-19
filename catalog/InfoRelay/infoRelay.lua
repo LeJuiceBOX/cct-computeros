@@ -105,8 +105,7 @@ function main()
     --collect_func = require(COLLECT_INSTRUCTION_REQ)
     while true do
         parallel.waitForAny(collect, function()
-            terminal:pressAnyKeyToContinue()
-        end)
+            repeat os.sleep(1) until terminal:pressAnyKeyToContinue() end)
         terminal:reset()
         terminal:print("Relay paused.")
         local opts = {
