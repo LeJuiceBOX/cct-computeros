@@ -19,6 +19,9 @@ module.parse = function(packet)
     for str in string.gmatch(packet, "([^"..sep.."]+)") do
         local arg = str:match( "^%s*(.-)%s*$" )
         --print("Found arg: "..arg)
+        if arg == "nil" then
+            arg = nil
+        end
         table.insert(t,arg) -- match: clears start and end whitespace
     end
     return t
