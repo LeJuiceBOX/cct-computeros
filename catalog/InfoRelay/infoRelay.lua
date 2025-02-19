@@ -16,6 +16,19 @@ local suffix
 
 local collect_func
 
+
+local modem = peripheral.find("modem")
+if not modem.isWireless() then
+    print("Modem must be wireless, exiting...")
+    os.sleep(2)
+    term.clear()
+    term.setCursorPos(1,1)
+    return
+end
+
+settings.load()
+peripheral.find("modem", rednet.open)
+
 function loadSettings()
     firstTime = settings.get(SETTINGS..".firstTime",true)
     label = settings.get(SETTINGS..".label",true)
@@ -81,7 +94,6 @@ end
 
 
 function main()
-    rednet.open()
     settings.load()
     loadSettings()
     terminal:reset()
