@@ -122,7 +122,7 @@ function main()
         elseif resInd == 2 then
             setup()
             loadSettings()
-        elseif resInd == 3 then
+        elseif resInd == 4 then
             break
         end
     end
