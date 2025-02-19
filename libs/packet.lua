@@ -20,7 +20,7 @@ module.parse = function(packet)
         local arg = str
         --print("Found arg: "..arg)
         if arg == "nil" then
-            arg = nil
+            arg = ""
         end
         table.insert(t,arg) -- match: clears start and end whitespace
     end
