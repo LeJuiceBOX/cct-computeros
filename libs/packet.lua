@@ -4,6 +4,9 @@ module.compile = function(...)
     local args = {...}
     local p = ""
     for i,a in pairs(args) do
+        if a == "" or a == nil then
+            a = "nil"
+        end
         p = p..a
         if i ~= #args then p = p..","; end
     end
