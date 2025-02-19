@@ -32,7 +32,7 @@ function gatherInfo()
         local args = packet.parse(tostring(message))
         if #args > 0 then                
             if args[1] == "packet" then
-                if #args < 6 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
+                if #args < 3 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
                 local pre = args[4] or ""
                 local suf = args[5] or ""
                 local id = args[2]:gsub("%s+", "_")
