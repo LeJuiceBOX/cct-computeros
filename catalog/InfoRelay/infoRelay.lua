@@ -66,20 +66,22 @@ end
 
 function collect()
     shell.run(COLLECT_INSTRUCTION_SCRIPT)
-    local value = settings.get("app.InfoRelay.value","&eerror")
     while true do
+        local value = settings.get("app.InfoRelay.value","&eerror")
         terminal:reset()
         terminal:print("InfoRelay is active!")
         terminal:print("Label: "..label)
         terminal:print("Value: "..value)
         terminal:print()
         terminal:print("Press any key for the menu.")
+        rednet.broadcast(packet.compile("packet",label,value,prefix,suffix),"Info")
         os.sleep(collectInterval)
     end
 end
 
 
 function main()
+    rednet.open()
     settings.load()
     loadSettings()
     terminal:reset()
@@ -104,7 +106,7 @@ function main()
         local resStr, resInd = terminal:promptOptions("What would you like to do?",false,opts,4)
         if resInd == 1 then 
             shell.run("edit "..COLLECT_INSTRUCTION_SCRIPT)
-            collect_func = require(COLLECT_INSTRUCTION_REQ)
+            --collect_func = require(COLLECT_INSTRUCTION_REQ)
         elseif resInd == 2 then
             setup()
             loadSettings()
@@ -113,6 +115,7 @@ function main()
         end
     end
     terminal:reset()
+    rednet.close()
 end
 
 main()
