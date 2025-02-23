@@ -19,14 +19,14 @@ if not modem.isWireless() then
 end
 
 settings.load()
+local infos = settings.get(SETTINGS_INFOS,{})
+
+settings.load()
 peripheral.find("modem", rednet.open)
 
 
-function gatherInfo()
+function listen()
     --print("Gathering...")
-    settings.load()
-    local infos = settings.get(SETTINGS_INFOS,{})
-    rednet.broadcast(PROTOCOL,"get")
     local event, id, message, protocol = os.pullEvent("rednet_message")
     if id and message then
         --print(id,message)
@@ -45,7 +45,6 @@ function gatherInfo()
                 }
                 settings.set(SETTINGS_INFOS,infos)
                 settings.save()
-                print("Updated")
             end
         end
     end
@@ -62,21 +61,22 @@ function draw()
 end
 
 
-repeat
 
-    parallel.waitForAny(function()    
-        while true do
-            gatherInfo()
-            draw()
-            os.sleep(0.25)
+parallel.waitForAny(listen,function()
+    repeat
+        parallel.waitForAny(function()    
+            while true do
+                draw()
+                os.sleep(0.25)
+            end
+        end,function ()
+            terminal:pressAnyKeyToContinue()
+        end)
+        terminal:reset()
+        local opts = {"Back","Push to monitor","Exit"}
+        local res, resInd = terminal:promptOptions("What would you like to do?",false,opts,3)
+        if resInd == 2 then
+            terminal:setOutput(peripheral.find("monitor"))
         end
-    end,function ()
-        terminal:pressAnyKeyToContinue()
-    end)
-    terminal:reset()
-    local opts = {"Back","Push to monitor","Exit"}
-    local res, resInd = terminal:promptOptions("What would you like to do?",false,opts,3)
-    if resInd == 2 then
-        terminal:setOutput(peripheral.find("monitor"))
-    end
-until res == "Exit"
+    until res == "Exit"
+end
