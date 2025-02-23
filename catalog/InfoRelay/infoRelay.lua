@@ -77,6 +77,8 @@ function setup()
     terminal:reset()
 end
 
+local lastSend = 0
+
 function collect()
     while true do
         shell.run(COLLECT_INSTRUCTION_SCRIPT)
@@ -85,9 +87,11 @@ function collect()
         terminal:print("InfoRelay is active!")
         terminal:print("Label: "..label)
         terminal:print("Value: "..tostring(value))
+        terminal:print("Last send: "..tostring(os.clock()-lastSend))
         terminal:print()
         terminal:print("Press any key for the menu.")
         rednet.broadcast(packet.compile("packet",label,value,prefix,suffix),"Info")
+        lastSend = os.clock()
         os.sleep(collectInterval)
     end
 end
