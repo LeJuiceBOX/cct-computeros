@@ -3,6 +3,7 @@ local SETTINGS_INFOS = "app.InfoReceiver.info"
 local PROTOCOL = "Info"
 
 local packet = require("/packet")
+local terminal = require("/terminal"):new()
 
 term.clear()
 term.setCursorPos(1,1)
@@ -52,12 +53,11 @@ end
 
 function draw()
     settings.load()
-    term.clear()
-    term.setCursorPos(1,1)
-    print("Infos:\n")
+    terminal:reset()
+    terminal:print("Infos:\n")
     local infos = settings.get("app.InfoReceiver.info",{})
     for _,v in pairs(infos) do
-        print(" "..v.Label..": "..v.Prefix..v.Value..v.Suffix)
+        terminal:print(" "..v.Label..": "..v.Prefix..v.Value..v.Suffix)
     end
 end
 
