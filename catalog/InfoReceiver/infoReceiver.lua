@@ -79,7 +79,8 @@ parallel.waitForAny(listen,function()
         local opts = {"Back","Reset data","Push to monitor","Exit"}
         local res, resInd = terminal:promptOptions("What would you like to do?",false,opts,3)
         if resInd == 2 then
-            settings.unset(SETTINGS_INFOS)
+            settings.set(SETTINGS_INFOS,{})
+            infos = settings.get(SETTINGS_INFOS,{})
         elseif resInd == 3 then
             terminal:setOutput(peripheral.find("monitor"))
         end
