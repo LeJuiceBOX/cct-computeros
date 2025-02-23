@@ -69,7 +69,7 @@ parallel.waitForAny(listen,function()
                 draw()
                 os.sleep(0.25)
             end
-        end,function ()
+        end,function()
             terminal:pressAnyKeyToContinue()
         end)
         terminal:reset()
