@@ -5,8 +5,7 @@ local PROTOCOL = "Info"
 local packet = require("/packet")
 local terminal = require("/terminal"):new()
 
-term.clear()
-term.setCursorPos(1,1)
+terminal:reset()
 print("Loading...")
 
 local modem = peripheral.find("modem")
