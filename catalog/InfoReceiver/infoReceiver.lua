@@ -72,6 +72,8 @@ parallel.waitForAny(listen,function()
                 os.sleep(0.25)
             end
         end,function()
+            terminal:print()
+            terminal:print()
             terminal:pressAnyKeyToContinue()
         end)
         terminal:reset()
