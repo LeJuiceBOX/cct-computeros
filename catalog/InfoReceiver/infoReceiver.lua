@@ -26,26 +26,29 @@ function gatherInfo()
     settings.load()
     local infos = settings.get(SETTINGS_INFOS,{})
     rednet.broadcast(PROTOCOL,"get")
-    local event, id, message, protocol = os.pullEvent("rednet_message")
-    if id and message then
-        --print(id,message)
-        local args = packet.parse(tostring(message))
-        if #args > 0 then                
-            if args[1] == "packet" then
-                if #args < 3 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
-                local pre = args[4] or ""
-                local suf = args[5] or ""
-                local id = args[2]:gsub("%s+", "_")
-                infos[id] = {
-                    Label = args[2],
-                    Value = args[3],
-                    Prefix = pre,
-                    Suffix = suf
-                }
-                settings.set(SETTINGS_INFOS,infos)
-                settings.save()
+    while true do
+        local event, id, message, protocol = os.pullEvent("rednet_message")
+        if id and message then
+            --print(id,message)
+            local args = packet.parse(tostring(message))
+            if #args > 0 then                
+                if args[1] == "packet" then
+                    if #args < 3 then print("Malformed packet. (#"..id..": "..message..")"); os.sleep(3); return; end
+                    local pre = args[4] or ""
+                    local suf = args[5] or ""
+                    local id = args[2]:gsub("%s+", "_")
+                    infos[id] = {
+                        Label = args[2],
+                        Value = args[3],
+                        Prefix = pre,
+                        Suffix = suf
+                    }
+                    settings.set(SETTINGS_INFOS,infos)
+                    settings.save()
+                end
             end
         end
+        os.sleep()
     end
 end
 
@@ -62,7 +65,6 @@ end
 
 
 while true do
-    draw()
-    gatherInfo()
+    parallel.waitForAll(draw,gatherInfo)
     os.sleep(1)
 end
