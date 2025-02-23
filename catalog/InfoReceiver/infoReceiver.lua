@@ -62,8 +62,21 @@ function draw()
 end
 
 
-while true do
-    gatherInfo()
-    draw()
-    os.sleep(0.25)
-end
+repeat
+
+    parallel.waitForAny(function()    
+        while true do
+            gatherInfo()
+            draw()
+            os.sleep(0.25)
+        end
+    end,function ()
+        terminal:pressAnyKeyToContinue()
+    end)
+    terminal:reset()
+    local opts = {"Back","Push to monitor","Exit"}
+    local res, resInd = terminal:promptOptions("What would you like to do?",false,opts,3)
+    if resInd == 2 then
+        terminal:setOutput(peripheral.find("monitor"))
+    end
+until res == "Exit"
