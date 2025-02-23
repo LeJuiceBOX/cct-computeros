@@ -63,6 +63,7 @@ end
 
 
 while true do
-    parallel.waitForAll(draw,gatherInfo)
-    os.sleep(1)
+    gatherInfo()
+    draw()
+    os.sleep(0.25)
 end
