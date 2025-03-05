@@ -72,7 +72,7 @@ function drawLabels()
         if doDrawLabels then
             local info = "&7ID: "..os.getComputerID()
             if turtle ~= nil then
-                info = info.."  FL: "..math.floor(turtle.getFuelLevel()/turtle.getFuelLimit()).."%"
+                info = info.."  FL: "..math.floor((turtle.getFuelLevel()/turtle.getFuelLimit())*100).."%"
             end
             info = info.."  &7Label: '"..(os.getComputerLabel() or "").."'"
             terminal:seperator("&7-",terminal.size.y-1)
