@@ -1,5 +1,5 @@
 
-
+local gitLib = require("/gitLib")
 local terminal = require("/terminal"):new()
 
 
@@ -8,6 +8,7 @@ local MAINMENU_OPTIONS = {
     "Programs",
     "Update",
     "Download",
+    "Catalog",
 }
 
 local doDrawLabels = true
@@ -33,6 +34,20 @@ function handleMenu()
                 shell.run("install")
                 return
             end
+        elseif resInd == 5 then
+            terminal:clearMultiLines(4,terminal.size.y-3)
+            local dirs, err = gitLib.getRepoDirs("LeJuiceBOX","cct-computeros","catalog")
+            local names = {}
+            for i,v in pairs(dirs or {}) do
+                names[i] = v.Name
+            end
+            terminal:promptOptions("Choose a download ~",false,names or {"No dirs..?"},4)
+            if err == "Failed to connect to GitHub" then
+                terminal:clearMultiLines(4,terminal.size.y-3)
+                terminal:writeLine(4,"GitHub rate-limited you, slow down!")
+                os.sleep(2)
+            end
+            
         end
 
     until resInd == 1
