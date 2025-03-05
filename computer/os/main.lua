@@ -17,7 +17,7 @@ while true do
     terminal:seperator("&8=",3)
     local info = "&7ID: "..os.getComputerID()
     if turtle ~= nil then
-        info = info.."  FL: "..turtle.getFuelLevel()/turtle.getFuelLimit().."%"
+        info = info.."  FL: "..math.floor(turtle.getFuelLevel()/turtle.getFuelLimit()).."%"
     end
     info = info.."  &7Label: '"..os.getComputerLabel().."'"
     terminal:seperator("&7-",terminal.size.y-1)
