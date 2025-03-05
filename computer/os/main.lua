@@ -13,6 +13,7 @@ local MAINMENU_OPTIONS = {
 local doDrawLabels = true
 
 function main()
+    terminal:reset()
     if os.getComputerLabel() == nil then
         shell.run("os/.system/task_name_computer.lua")
     end
