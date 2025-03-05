@@ -9,5 +9,8 @@ if autoExecPath ~= "" then
         print("File doesnt exist.\nPress enter...")
         io.read()
     end
+else
+    settings.set("os.autoExecPath","")
+    settings.save()
 end
 shell.run("os/main.lua")
