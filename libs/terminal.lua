@@ -471,6 +471,10 @@ function module.getKeyCodeInt(keycode)
     return c
 end
 
+function module:clearLine(lineNum)
+    term.clearLine(lineNum)
+end
+
 function module:seperator(char,lineNumber)
     local x,y = term.getCursorPos()
     lineNumber = lineNumber or y
