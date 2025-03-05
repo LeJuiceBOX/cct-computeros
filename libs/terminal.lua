@@ -471,8 +471,19 @@ function module.getKeyCodeInt(keycode)
     return c
 end
 
-function module:clearLine(lineNum)
-    term.clearLine(lineNum)
+function module:clearLine(line)
+    local x,y = term.getCursorPos()
+    term.setCursorPos(1,line)
+    term.clearLine()
+    term.setCursorPos(x,y)
+end
+
+function module:clearMultiLines(fromY,toY)
+    if fromY < toY then
+        for i = fromY, toY, 1 do
+            self:clearLine(i)
+        end
+    end    
 end
 
 function module:seperator(char,lineNumber)
@@ -482,8 +493,7 @@ function module:seperator(char,lineNumber)
     for i = 1, self.size.x do
         s = s..tostring(char)
     end
-    self:clearLine(lineNumber)
-    self:writeLine(lineNumber)
+    self:writeLine(lineNumber,s)
 end
 
 
