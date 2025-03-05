@@ -12,7 +12,7 @@ local MAINMENU_OPTIONS = {
 
 while true do
     terminal:reset()
-    terminal:makeSeperator("&8=")
+    terminal:seperator("&8=")
     terminal:print(" Phrawg&lOS")
     terminal:print(" Label: '"..os.getComputerLabel().."'")
     terminal:seperator("&8=")
