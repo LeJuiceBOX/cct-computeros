@@ -14,6 +14,12 @@ settings.set("os.manifest",{
     },
 
     {
+        Name = "gitLib.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/gitLib.lua",
+        Paste = nil
+    },
+
+    {
         Name = "os/main.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/os/main.lua",
         Paste = nil
@@ -31,6 +37,7 @@ settings.set("os.manifest",{
         Paste = nil
     },
     
+
     {
         Name = "os/.system/task_name_computer.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/os/.system/task_name_computer.lua",
