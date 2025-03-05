@@ -499,6 +499,11 @@ function module:seperator(char,lineNumber)
     self:writeLine(lineNumber,s)
 end
 
+function module:printTable(tbl)
+    for i,v in pairs(tbl) do
+        terminal:print("&7"..i..": ".."&8"..tostring(v))
+    end
+end
 
 
 return module
