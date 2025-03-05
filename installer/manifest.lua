@@ -30,6 +30,12 @@ settings.set("os.manifest",{
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/installer/install.lua",
         Paste = nil
     },
+    
+    {
+        Name = "computer/1/os/.system/task_name_computer.lua",
+        Git = "",
+        Paste = "",
+    },
 
 })
 settings.save()
