@@ -1,4 +1,8 @@
+
+local gitLib = require("/gitLib")
 local terminal = require("/terminal"):new()
+
+repeat
 
 terminal:reset()
 terminal:seperator("&8=",1)
@@ -22,6 +26,4 @@ if err == "Failed to connect to GitHub" then
     os.sleep(2)
 end
 
-if resInd == #names then
-    -- leave blank so it loops back to menu
-end
+until resInd == #names
