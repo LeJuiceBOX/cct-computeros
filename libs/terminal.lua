@@ -501,7 +501,7 @@ end
 
 function module:printTable(tbl)
     for i,v in pairs(tbl) do
-        terminal:print("&7"..i..": ".."&8"..tostring(v))
+        self:print("&7"..i..": ".."&8"..tostring(v))
     end
 end
 
