@@ -32,8 +32,14 @@ settings.set("os.manifest",{
     },
     
     {
-        Name = "computer/1/os/.system/task_name_computer.lua",
+        Name = "os/.system/task_name_computer.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/os/.system/task_name_computer.lua",
+        Paste = "",
+    },
+
+    {
+        Name = "os/.system/menu_catalog_screen.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/os/.system/menu_catalog_screen.lua",
         Paste = "",
     },
 
