@@ -471,12 +471,15 @@ function module.getKeyCodeInt(keycode)
     return c
 end
 
-function module:makeSeperator(char,charsToRemove)
+function module:seperator(char,lineNumber)
+    local x,y = term.getCursorPos()
+    lineNumber = lineNumber or y
     local s = ""
     for i = 1, self.size.x do
         s = s..tostring(char)
     end
-    return s
+    terminal:clearLine(lineNumber)
+    terminal:writeLine(lineNumber)
 end
 
 
