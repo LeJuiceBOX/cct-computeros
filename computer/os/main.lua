@@ -11,6 +11,7 @@ local MAINMENU_OPTIONS = {
 }
 
 while true do
+    terminal:reset()
     terminal:makeSeperator("=")
     terminal:print(" PhrawgOS")
     terminal:makeSeperator("=")
@@ -18,7 +19,7 @@ while true do
     if turtle ~= nil then
         info = info..", FL: "..turtle.getFuelLevel()/turtle.getFuelLimit()
     end
-    terminal:setCursorPos(1,terminal.size.y-1)
+    term.setCursorPos(1,terminal.size.y-1)
     terminal:makeSeperator("=")
     terminal:writeLine(terminal.size.y,info)
     terminal:promptOptions("",false,MAINMENU_OPTIONS,4)
