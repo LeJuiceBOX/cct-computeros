@@ -1,21 +1,14 @@
 
 settings.load()
 settings.set("os.manifest",{
-
     {
-        Name = "os/cmds/gitget.lua",
-        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/os/cmds/gitget.lua",
-        Paste = nil
-    },
-
-    {
-        Name = "/terminal.lua",
+        Name = "terminal.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/terminal.lua",
         Paste = nil
     },
 
     {
-        Name = "/packet.lua",
+        Name = "packet.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/packet.lua",
         Paste = nil
     },
@@ -29,6 +22,12 @@ settings.set("os.manifest",{
     {
         Name = "startup.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/computer/startup.lua",
+        Paste = nil
+    },
+
+    {
+        Name = "install.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/installer/install.lua",
         Paste = nil
     },
 

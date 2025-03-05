@@ -6,9 +6,6 @@
 -- setup getgit
 term.clear()
 term.setCursorPos(1,1)
-if fs.exists("os/cmds/getgit.lua") then fs.delete("os/cmds/getgit.lua") end
-shell.run("pastebin get Y1TpxWrH os/cmds/getgit.lua")
-shell.setAlias("getgit","os/cmds/getgit.lua")
 os.sleep(0.25)
 -- pastebin manifest and run it
 shell.run("wget run https://raw.githubusercontent.com/LeJuiceBOX/cct-computeros/refs/heads/main/installer/manifest.lua")
