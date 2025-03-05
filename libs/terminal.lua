@@ -478,8 +478,8 @@ function module:seperator(char,lineNumber)
     for i = 1, self.size.x do
         s = s..tostring(char)
     end
-    terminal:clearLine(lineNumber)
-    terminal:writeLine(lineNumber)
+    self:clearLine(lineNumber)
+    self:writeLine(lineNumber)
 end
 
 
