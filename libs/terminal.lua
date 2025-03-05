@@ -236,12 +236,15 @@ end
 
 function module:promptConf(promptText,useOptions)
     useOptions = useOptions or false
-    self:print(promptText)
     if useOptions then
-        local _, res = self:promptOptions(nil,false,{"&dYes","&eNo"})
+        local _, res = self:promptOptions(promptText,false,{"&dYes","&eNo"})
         return (res == 1)
     else
         while true do
+            self:print(promptText)
+            self:print()
+            self:print("&dEnter     &7- Accept")
+            self:print("&eBackspace &7- Decline")
             local k = self:waitForKey()
             if k == keys.enter then
                 return true
