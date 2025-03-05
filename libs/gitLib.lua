@@ -2,7 +2,8 @@
 
 local module = {}
 
-module.getRepoFiles = function(owner, repo, path, recursive, max_depth)
+module.getRepoFiles = function(owner, repo, path, recursive, max_depth, includePath)
+    includePath = includePath or true
     recursive = recursive or false
     max_depth = max_depth or 3  -- Default maximum recursion depth
     
@@ -40,7 +41,11 @@ module.getRepoFiles = function(owner, repo, path, recursive, max_depth)
     
     for _, item in ipairs(parsed) do
         if item.type == "file" then
-            table.insert(file_names, item.path)
+            table.insert(file_names, {
+                Name = item.name,
+                Path = item.path,
+                Download = item.download_url
+            })
         elseif recursive and item.type == "dir" then
             -- Recursively search directory with reduced depth
             local sub_files, err = module.getRepoFiles(
