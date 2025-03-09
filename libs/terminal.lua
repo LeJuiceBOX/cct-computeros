@@ -149,7 +149,7 @@ function module:colorWrite(str)
     local txt = {}
     local builtStr = ""
     local lastSymbolPos = 0
-    self:setColor(colors.white)
+    local lastTextColor = self.output.getTextColor()
     for i = 1, #str do
         local charBefore = str:sub(i-1, i-1)
         local char = str:sub(i, i)
@@ -164,7 +164,7 @@ function module:colorWrite(str)
         end
     end
     self.output.write(builtStr)
-    self:setColor(colors.white)
+    self.output.setTextColor(lastTextColor)    
 end
 
 function module:removeColorCodes(str)
