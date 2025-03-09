@@ -136,6 +136,14 @@ function module:setColorCode(code)
     end
 end
 
+function module:setBackgroundColor(code)
+    for c,color in pairs(self.ColorMap) do
+        if code == c then
+            self.output.setBackgroundColor(color)
+        end
+    end
+end
+
 function module:colorWrite(str)
     if str == nil then printError("String is nil"); return end
     local txt = {}
