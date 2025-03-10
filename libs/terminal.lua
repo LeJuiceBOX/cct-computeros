@@ -145,7 +145,7 @@ function module:setBackgroundColor(code)
 end
 
 function module:colorBackground(color)
-    local lastBg = self.output.getTextColor()
+    --local lastBg = self.output.getTextColor()
     self.output.setBackgroundColor(color)
     local w,h = self.output.getSize()
     for x = 1, w, 1 do
