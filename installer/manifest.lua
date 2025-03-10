@@ -14,6 +14,12 @@ settings.set("os.manifest",{
     },
 
     {
+        Name = "buttons.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/buttons.lua",
+        Paste = nil
+    },
+
+    {
         Name = "gitLib.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/gitLib.lua",
         Paste = nil
