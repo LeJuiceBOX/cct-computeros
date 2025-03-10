@@ -144,6 +144,18 @@ function module:setBackgroundColor(code)
     end
 end
 
+function module:colorBackground(color)
+    local lastBg = self.output.getTextColor()
+    self.output.setBackgroundColor(color)
+    local w,h = self.output.getSize()
+    for x = 1, w, 1 do
+        for y = 1, h, 1 do
+            self.output.setCursorPos(x,y)
+            self.output.write(" ")
+        end
+    end
+end
+
 function module:colorWrite(str)
     if str == nil then printError("String is nil"); return end
     local txt = {}
