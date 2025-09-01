@@ -25,5 +25,11 @@ repeat
         terminal:writeLine(4,"GitHub rate-limited you, slow down!")
         os.sleep(2)
     end
+    if resStr then
+        terminal:clearMultiLines(4,terminal.size.y-3)
+        terminal:print("Downloading...")
+        shell.run("wget "..dirs[resInd].." "..names[resInd])
+        os.sleep(1)
+    end
 
 until resInd == #names
