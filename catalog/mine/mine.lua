@@ -1,4 +1,7 @@
--- 0DAspFKK
+-- eXXmchmd
+
+-- MIN_FULL_SLOTS leaves slots open to avoid mining more than turtle can hold
+local MIN_FULL_SLOTS = 10 
 
 local cmdArgs = table.pack(...)
 
@@ -37,6 +40,7 @@ local depositedResources = {}
 --=====================================================================================
 
 function Main()
+    Terminal:print("PrawgMine - v3.1")
     if #cmdArgs > 0 then
         Params.Width = tonumber(cmdArgs[1])
         Params.Height = tonumber(cmdArgs[2])
@@ -277,11 +281,11 @@ function mineLayer()
         if mod <= 0 then -- if we odd
             Brain:turnToFace(Dir.E)
             Brain:forceForward(Params.Width-1)
-            if Brain:isInvFull() then depositItems(true) end
+            if Brain:isInvFull(MIN_FULL_SLOTS) then depositItems(true) end
         elseif mod > 0  then -- if we even
             Brain:turnToFace(Dir.W)
             Brain:forceForward(Params.Width-1)
-            if Brain:isInvFull() then depositItems(true) end
+            if Brain:isInvFull(MIN_FULL_SLOTS) then depositItems(true) end
         end
         if Brain.Y == Params.Height-1 then break; end
         Brain:forceUp()
@@ -421,6 +425,39 @@ function clamp(num,min,max)
         return min
     end
     return num
+end
+
+function customForceForward(times, ignoreTurts)
+    ignoreTurts = ignoreTurts or false
+    times = times or 1
+    if times == 0 then return; end
+    turtle.select(1)
+    for i = 1, times do
+        self:setHasMoved(false)
+        self:saveLastNav()
+        if self.CurrentDir == module.Dir.N then
+            self.Z = self.Z + 1
+        elseif self.CurrentDir == module.Dir.S then
+            self.Z = self.Z - 1
+        elseif self.CurrentDir == module.Dir.E then
+            self.X = self.X + 1
+        elseif self.CurrentDir == module.Dir.W then
+            self.X = self.X - 1
+        end
+        self:saveNav()
+                
+        -- wait for no turtle
+        if ignoreTurts == false then
+            local isBlock,data = turtle.inspect() 
+            if isBlock and string.find(data.name,"computercraft:turtle") then
+                repeat os.sleep(0.25) until not turtle.inspect()
+            end
+        end
+        
+        repeat turtle.dig() until turtle.forward()
+        os.sleep(MOVE_DELAY)
+        self:setHasMoved(true)
+    end
 end
 --=====================================================================================
 
