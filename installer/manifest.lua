@@ -8,6 +8,12 @@ settings.set("os.manifest",{
     },
 
     {
+        Name = "turtleBrain.lua",
+        Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/turtleBrain.lua",
+        Paste = nil
+    },
+
+    {
         Name = "packet.lua",
         Git = "LeJuiceBOX/cct-computeros/refs/heads/main/libs/packet.lua",
         Paste = nil
