@@ -26,10 +26,13 @@ repeat
         os.sleep(2)
     end
     if resStr then
-        terminal:clearMultiLines(4,terminal.size.y-3)
+        term.clear()
         terminal:print("Downloading...")
         shell.run("wget "..dirs[resInd].." "..names[resInd])
         os.sleep(1)
     end
+    term.clear()
+    terminal:print("Got "..tostring(resStr))
+    os.sleep(3)
 
 until resInd == #names
